@@ -31,7 +31,7 @@ function Cbe({navigation}) {
       justifyContent: 'center',
       height: '15%',
       backgroundColor: '#fff',
-      elevation: 5,
+      elevation: 3,
       alignSelf: 'center',
     },
 

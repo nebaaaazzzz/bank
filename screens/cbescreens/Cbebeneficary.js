@@ -33,7 +33,7 @@ function Cbebeneficary({navigation}) {
               })
             }
             onPressOut={() => setPressed1(false)}
-            style={isPressed1 ? pressStyle.btn : styles.btn}>
+            style={styles.btn}>
             <Text style={styles.txt}>List Beneficiaries</Text>
             <Entypo
               style={styles.icon}
@@ -53,7 +53,7 @@ function Cbebeneficary({navigation}) {
                 },
               })
             }
-            style={isPressed2 ? pressStyle.btn : styles.btn}>
+            style={styles.btn}>
             <Text style={styles.txt}>Delete Beneficiaries</Text>
             <Entypo
               style={styles.icon}
@@ -73,7 +73,7 @@ function Cbebeneficary({navigation}) {
             }
             onPressIn={() => setPressed3(true)}
             onPressOut={() => setPressed3(false)}
-            style={isPressed3 ? pressStyle.btn : styles.btn}>
+            style={styles.btn}>
             <Text style={styles.txt}>Add New Beneficiary</Text>
             <Entypo
               style={styles.icon}

@@ -86,7 +86,7 @@ function List({navigation}) {
       height: calcHeight(15.4),
       marginTop: calcHeight(4.6),
       marginLeft: calcWidth(3.6),
-      borderColor: 'rgba(0 , 0,0,0.5)',
+      borderColor: '#2196F3',
       elevation: 20,
       backgroundColor: '#fff',
       borderWidth: 2,
