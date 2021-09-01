@@ -1,13 +1,22 @@
 import * as React from 'react';
-import {Image, ScrollView, SafeAreaView, View, StyleSheet} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
 import CbeprofileStack from './Cbeprofile';
 import {createStackNavigator} from '@react-navigation/stack';
-
 import Cbebeneficary from './Cbebeneficary';
 import Cbeutility from './Cbeutility';
 import Cbetransfer from './Cbetransfer';
 import Cbetopup from './Cbetopup';
+import Cbeslideshow from './Cbeslideshow';
 import {Button} from 'react-native-paper';
+const CallContext = React.createContext('');
+
 const Stack = createStackNavigator();
 function Cbe({navigation}) {
   const styles = StyleSheet.create({
@@ -118,38 +127,45 @@ function Cbe({navigation}) {
 
 function CbeStack() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTintColor: 'white',
-        headerStyle: {backgroundColor: '#2196F3'},
-      }}>
-      <Stack.Screen name="Cbehome" options={{title: 'CBE'}} component={Cbe} />
-      <Stack.Screen
-        name="Cbetopup"
-        options={{title: 'CBE TopUp'}}
-        component={Cbetopup}
-      />
-      <Stack.Screen
-        options={{headerShown: false}}
-        name="Cbetransfer"
-        component={Cbetransfer}
-      />
-      <Stack.Screen
-        options={{headerShown: false}}
-        name="Cbeutility"
-        component={Cbeutility}
-      />
-      <Stack.Screen
-        options={{headerShown: false}}
-        name="Cbeprofilestack"
-        component={CbeprofileStack}
-      />
-      <Stack.Screen
-        options={{title: 'Beneficiary'}}
-        name="Cbebeneficary"
-        component={Cbebeneficary}
-      />
-    </Stack.Navigator>
+    <CallContext.Provider value="">
+      <Stack.Navigator
+        screenOptions={{
+          headerTintColor: 'white',
+          headerStyle: {backgroundColor: '#2196F3'},
+        }}>
+        <Stack.Screen
+          name="Cbeslideshow"
+          options={{title: 'CBE'}}
+          component={Cbeslideshow}
+        />
+        <Stack.Screen name="Cbehome" options={{title: 'CBE'}} component={Cbe} />
+        <Stack.Screen
+          name="Cbetopup"
+          options={{title: 'CBE TopUp'}}
+          component={Cbetopup}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Cbetransfer"
+          component={Cbetransfer}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Cbeutility"
+          component={Cbeutility}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Cbeprofilestack"
+          component={CbeprofileStack}
+        />
+        <Stack.Screen
+          options={{title: 'Beneficiary'}}
+          name="Cbebeneficary"
+          component={Cbebeneficary}
+        />
+      </Stack.Navigator>
+    </CallContext.Provider>
   );
 }
 export default CbeStack;

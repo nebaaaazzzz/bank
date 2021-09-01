@@ -25,29 +25,35 @@ function utilitystack({navigation}) {
       flex: 1,
     },
     subcontent: {
-      marginBottom: '58%',
+      marginBottom: '40%',
     },
 
     btn: {
       width: '100%',
-      height: '11%',
+      height: '9%',
       justifyContent: 'center',
       backgroundColor: '#fff',
-      elevation: 5,
+      borderRadius: 0,
+      marginBottom: '1%',
     },
     labelstyle: {
       fontSize: 16,
     },
+    contentStyle: {
+      justifyContent: 'flex-start',
+    },
   });
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView style={{backgroundColor: '#fff'}}>
         <View style={styles.subcontent}>
           <Button
-            icon="transfer"
+            // icon="transfer"
             mode="outlined"
+            uppercase={false}
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            contentStyle={styles.contentStyle}
             style={styles.btn}
             onPress={() => {
               requestAnimationFrame(() => {
@@ -61,8 +67,10 @@ function utilitystack({navigation}) {
           </Button>
           <Button
             mode="outlined"
+            uppercase={false}
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            contentStyle={styles.contentStyle}
             style={styles.btn}
             onPress={() => {
               requestAnimationFrame(() => {
@@ -77,7 +85,9 @@ function utilitystack({navigation}) {
           <Button
             mode="outlined"
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            uppercase={false}
+            color="#000"
+            contentStyle={styles.contentStyle}
             style={styles.btn}
             onPress={() => {
               requestAnimationFrame(() => {
@@ -91,9 +101,11 @@ function utilitystack({navigation}) {
           </Button>
           <Button
             mode="outlined"
+            uppercase={false}
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
             style={styles.btn}
+            contentStyle={styles.contentStyle}
             onPress={() => {
               requestAnimationFrame(() => {
                 if (i == 0) {
@@ -106,9 +118,11 @@ function utilitystack({navigation}) {
           </Button>
           <Button
             mode="outlined"
+            uppercase={false}
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
             style={styles.btn}
+            contentStyle={styles.contentStyle}
             onPress={() => {
               requestAnimationFrame(() => {
                 if (i == 0) {
@@ -122,8 +136,10 @@ function utilitystack({navigation}) {
           <Button
             mode="outlined"
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            uppercase={false}
             style={styles.btn}
+            contentStyle={styles.contentStyle}
             onPress={() => {
               requestAnimationFrame(() => {
                 if (i == 0) {
@@ -139,8 +155,10 @@ function utilitystack({navigation}) {
           <Button
             mode="outlined"
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            contentStyle={styles.contentStyle}
             style={styles.btn}
+            uppercase={false}
             onPress={() => {
               requestAnimationFrame(() => {
                 if (i == 0) {
@@ -154,8 +172,10 @@ function utilitystack({navigation}) {
           <Button
             mode="outlined"
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            contentStyle={styles.contentStyle}
             style={styles.btn}
+            uppercase={false}
             onPress={() => {
               requestAnimationFrame(() => {
                 if (i == 0) {
@@ -171,7 +191,9 @@ function utilitystack({navigation}) {
           <Button
             mode="outlined"
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            uppercase={false}
+            contentStyle={styles.contentStyle}
             style={styles.btn}
             onPress={() => {
               requestAnimationFrame(() => {
@@ -186,7 +208,9 @@ function utilitystack({navigation}) {
           <Button
             mode="outlined"
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            uppercase={false}
+            contentStyle={styles.contentStyle}
             style={styles.btn}
             onPress={() => {
               requestAnimationFrame(() => {
@@ -201,7 +225,9 @@ function utilitystack({navigation}) {
           <Button
             mode="outlined"
             labelStyle={styles.labelstyle}
-            color="#2196F3"
+            color="#000"
+            uppercase={false}
+            contentStyle={styles.contentStyle}
             style={styles.btn}
             onPress={() => {
               requestAnimationFrame(() => {

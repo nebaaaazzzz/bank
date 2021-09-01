@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import CbeStack from './cbescreens/Cbe';
-import {Button} from 'react-native-paper';
 import Header from './Header';
 const useState = React.useState;
 
@@ -119,7 +118,7 @@ function List({navigation}) {
     },
     text: {
       textAlign: 'center',
-      color: 'rgba(0 , 0,0,0.5)',
+      color: '#2196F3',
       fontSize: 16,
       marginTop: calcHeight(0.6),
     },
@@ -142,7 +141,7 @@ function List({navigation}) {
           <View style={isPressed1 ? pressStyle.btn : styles.btn}>
             <Pressable
               onPress={() => {
-                navigation.navigate('Cbestack');
+                navigation.navigate('CbeStack');
               }}
               onPressIn={() => setPressed1(true)}
               onPressOut={() => setPressed1(false)}>
@@ -290,7 +289,7 @@ function HomeScreen(props) {
         component={List}
       />
       <Stack.Screen
-        name="Cbestack"
+        name="CbeStack"
         options={{headerShown: false}}
         component={CbeStack}
       />
