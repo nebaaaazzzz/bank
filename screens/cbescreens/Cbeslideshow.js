@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {ScrollView, SafeAreaView, View, StyleSheet} from 'react-native';
-i;
 import {SliderBox} from 'react-native-image-slider-box';
 import {Button} from 'react-native-paper';
 const images = [
@@ -8,6 +7,7 @@ const images = [
   require('./../../src/cbescreenshoot/2.jpg'),
   require('./../../src/cbescreenshoot/3.jpg'),
 ];
+
 function Cbeslideshow({navigation}) {
   const styles = StyleSheet.create({
     container: {
@@ -46,7 +46,11 @@ function Cbeslideshow({navigation}) {
                 alignSelf: 'center',
                 margin: 5,
               }}
-              onPress={() => navigation.navigate('Cbehome')}>
+              onPress={() =>
+                navigation.navigate('Cbehome', {
+                  type: 1,
+                })
+              }>
               Press me
             </Button>
           </View>
@@ -72,7 +76,11 @@ function Cbeslideshow({navigation}) {
                 margin: 5,
                 alignSelf: 'center',
               }}
-              onPress={() => navigation.navigate('Cbehome')}>
+              onPress={() =>
+                navigation.navigate('Cbehome', {
+                  type: 2,
+                })
+              }>
               Press me
             </Button>
           </View>

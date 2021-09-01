@@ -16,7 +16,7 @@ let schema = yup.object().shape({
   account: yup.number().required().positive().integer(),
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
-function Cbeelectricutility() {
+function Cbeelectricutility({route}) {
   const [pin, setPin] = useState();
   const [account, setAccount] = useState();
   const [isErr1, setErr1] = useState(false);
@@ -45,13 +45,16 @@ function Cbeelectricutility() {
                 .then(bool => {
                   if (bool) {
                     try {
+                      if (route.params.type == 1) {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*5*1*2*${account}*1#`,
+                        );
+                      } else {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*2*${account}*1#`,
+                        );
+                      }
                     } catch (e) {}
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*5*1*2*${account}*1#`,
-                    );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*1*2*${account}*1#`,
-                    // );
                   } else {
                     PermissionsAndroid.request(
                       'android.permission.CALL_PHONE',

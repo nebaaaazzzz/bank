@@ -15,10 +15,9 @@ import Cbetransfer from './Cbetransfer';
 import Cbetopup from './Cbetopup';
 import Cbeslideshow from './Cbeslideshow';
 import {Button} from 'react-native-paper';
-const CallContext = React.createContext('');
 
 const Stack = createStackNavigator();
-function Cbe({navigation}) {
+function Cbe({navigation, route}) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -65,7 +64,9 @@ function Cbe({navigation}) {
             color="#2196F3"
             style={styles.btn}
             onPress={() => {
-              requestAnimationFrame(() => navigation.navigate('Cbetransfer'));
+              requestAnimationFrame(() => navigation.navigate('Cbetransfer'), {
+                type: route.params.type,
+              });
             }}>
             Transfer
           </Button>
@@ -77,7 +78,11 @@ function Cbe({navigation}) {
             color="#2196F3"
             style={styles.btn}
             onPress={() => {
-              requestAnimationFrame(() => navigation.navigate('Cbetopup'));
+              requestAnimationFrame(() =>
+                navigation.navigate('Cbetopup', {
+                  type: route.params.type,
+                }),
+              );
             }}>
             TopUp
           </Button>
@@ -89,7 +94,11 @@ function Cbe({navigation}) {
             color="#2196F3"
             style={styles.btn}
             onPress={() => {
-              requestAnimationFrame(() => navigation.navigate('Cbebeneficary'));
+              requestAnimationFrame(() =>
+                navigation.navigate('Cbebeneficary', {
+                  type: route.params.type,
+                }),
+              );
             }}>
             People
           </Button>
@@ -101,7 +110,11 @@ function Cbe({navigation}) {
             labelStyle={styles.labelstyle}
             style={styles.btn}
             onPress={() => {
-              requestAnimationFrame(() => navigation.navigate('Cbeutility'));
+              requestAnimationFrame(() =>
+                navigation.navigate('Cbeutility', {
+                  type: route.params.type,
+                }),
+              );
             }}>
             Utilities
           </Button>
@@ -113,9 +126,11 @@ function Cbe({navigation}) {
             color="#2196F3"
             style={styles.btn}
             onPress={() => {
-              requestAnimationFrame(() =>
-                navigation.navigate('Cbeprofilestack'),
-              );
+              requestAnimationFrame(() => {
+                navigation.navigate('Cbeprofilestack', {
+                  type: route.params.type,
+                });
+              });
             }}>
             Profile
           </Button>
@@ -125,47 +140,45 @@ function Cbe({navigation}) {
   );
 }
 
-function CbeStack() {
+function CbeStack({route}) {
   return (
-    <CallContext.Provider value="">
-      <Stack.Navigator
-        screenOptions={{
-          headerTintColor: 'white',
-          headerStyle: {backgroundColor: '#2196F3'},
-        }}>
-        <Stack.Screen
-          name="Cbeslideshow"
-          options={{title: 'CBE'}}
-          component={Cbeslideshow}
-        />
-        <Stack.Screen name="Cbehome" options={{title: 'CBE'}} component={Cbe} />
-        <Stack.Screen
-          name="Cbetopup"
-          options={{title: 'CBE TopUp'}}
-          component={Cbetopup}
-        />
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Cbetransfer"
-          component={Cbetransfer}
-        />
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Cbeutility"
-          component={Cbeutility}
-        />
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Cbeprofilestack"
-          component={CbeprofileStack}
-        />
-        <Stack.Screen
-          options={{title: 'Beneficiary'}}
-          name="Cbebeneficary"
-          component={Cbebeneficary}
-        />
-      </Stack.Navigator>
-    </CallContext.Provider>
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: {backgroundColor: '#2196F3'},
+      }}>
+      <Stack.Screen
+        name="Cbeslideshow"
+        options={{title: 'CBE'}}
+        component={Cbeslideshow}
+      />
+      <Stack.Screen name="Cbehome" options={{title: 'CBE'}} component={Cbe} />
+      <Stack.Screen
+        name="Cbetopup"
+        options={{title: 'CBE TopUp'}}
+        component={Cbetopup}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Cbetransfer"
+        component={Cbetransfer}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Cbeutility"
+        component={Cbeutility}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Cbeprofilestack"
+        component={CbeprofileStack}
+      />
+      <Stack.Screen
+        options={{title: 'Beneficiary'}}
+        name="Cbebeneficary"
+        component={Cbebeneficary}
+      />
+    </Stack.Navigator>
   );
 }
 export default CbeStack;

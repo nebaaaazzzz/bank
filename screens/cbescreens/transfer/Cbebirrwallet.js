@@ -17,7 +17,7 @@ let schema = yup.object().shape({
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
 const useState = React.useState;
-function Cbebirrwallet(props) {
+function Cbebirrwallet({route}) {
   const [pin, setPin] = useState();
   const [phone, setPhone] = useState();
   const [amount, setAmount] = useState();
@@ -43,12 +43,15 @@ function Cbebirrwallet(props) {
             .then(bool => {
               if (bool) {
                 try {
-                  RNImmediatePhoneCall.immediatePhoneCall(
-                    `*889*1*${pin}*4*1*${phone}*${amount}#`,
-                  );
-                  // RNImmediatePhoneCall.immediatePhoneCall(
-                  //   `*889*1*${pin}*2*${phone}*${amount}#`,
-                  // );
+                  if (route.params.type == 1) {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*1*${phone}*${amount}#`,
+                    );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*2*${phone}*${amount}#`,
+                    );
+                  }
                 } catch (e) {
                   throw err;
                 }
@@ -57,12 +60,15 @@ function Cbebirrwallet(props) {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*4*1*${phone}*${amount}#`,
-                    );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*2*${phone}*${amount}#`,
-                    // );
+                    if (route.params.type == 1) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*4*1*${phone}*${amount}#`,
+                      );
+                    } else {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*2*${phone}*${amount}#`,
+                      );
+                    }
                   } else {
                     throw Error();
                   }

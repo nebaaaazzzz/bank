@@ -16,7 +16,7 @@ let schema = yup.object().shape({
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
 const useState = React.useState;
-function Cbewebirr() {
+function Cbewebirr({route}) {
   const [pin, setPin] = useState();
   const [code, setCode] = useState();
 
@@ -40,13 +40,14 @@ function Cbewebirr() {
             .then(bool => {
               if (bool) {
                 try {
-                  if (pin && code) {
+                  if (route.params.type == 1) {
                     RNImmediatePhoneCall.immediatePhoneCall(
                       `*889*1*${pin}*5*1*5*7*2*${code}#`,
                     );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*1*5*7*2*${code}#`,
-                    // );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*1*5*7*2*${code}#`,
+                    );
                   }
                 } catch (e) {
                   throw e;
@@ -56,17 +57,23 @@ function Cbewebirr() {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*5*1*5*7*2*${code}#`,
-                    );
+                    if (route.params.type == 1) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*5*1*5*7*2*${code}#`,
+                      );
+                    } else {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*4*5*1*5*7*2*${code}#`,
+                      );
+                    }
                   } else {
-                    Alert.alert('pls allow');
+                    throw new Error();
                   }
                 });
               }
             })
             .catch(err => {
-              console.log('error');
+              throw err;
             });
         })
         .catch(err => {

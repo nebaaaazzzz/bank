@@ -16,7 +16,7 @@ let schema = yup.object().shape({
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
 const useState = React.useState;
-function Cbepassportpayment() {
+function Cbepassportpayment({route}) {
   const [pin, setPin] = useState();
   const [ordcode, setOrdCode] = useState();
   const [isErr1, setErr1] = useState(false);

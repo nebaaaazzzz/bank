@@ -17,7 +17,7 @@ let schema = yup.object().shape({
   refno: yup.number().required().positive().integer(),
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
-function Cbeguzogopayment() {
+function Cbeguzogopayment({route}) {
   const [pin, setPin] = useState();
   const [refno, setRefno] = useState();
   const [isErr1, setErr1] = useState(false);
@@ -39,13 +39,14 @@ function Cbeguzogopayment() {
             .then(bool => {
               if (bool) {
                 try {
-                  if ((ref, pin)) {
+                  if (route.params.type == 1) {
                     RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*5*1*5*1*${ref}#`,
+                      `*889*1*${pin}*5*1*5*1*${refno}#`,
                     );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*1*5*1*${ref}#`,
-                    // );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*1*5*1*${refno}#`,
+                    );
                   }
                 } catch (e) {
                   throw e;
@@ -56,9 +57,13 @@ function Cbeguzogopayment() {
                 ).then(status => {
                   if (status === 'granted') {
                     try {
-                      if ((RefreshControl, pin)) {
+                      if (route.params.type == 1) {
                         RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*1*5*1*${refno}#`,
+                        );
+                      } else {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*5*1*${refno}#`,
                         );
                       }
                     } catch (e) {

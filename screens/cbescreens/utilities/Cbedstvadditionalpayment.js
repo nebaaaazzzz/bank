@@ -29,7 +29,7 @@ const radioButtonsData = [
     value: 'option2',
   },
 ];
-function Cbedstvadditionalpayment() {
+function Cbedstvadditionalpayment({route}) {
   const [pin, setPin] = useState();
   const [cardno, setCardno] = useState();
   const [isErr1, setErr1] = useState(false);
@@ -66,7 +66,7 @@ function Cbedstvadditionalpayment() {
             .then(bool => {
               if (bool) {
                 try {
-                  if (pin && item && number) {
+                  if (route.params.type == 1) {
                     RNImmediatePhoneCall.immediatePhoneCall(
                       `*889*1*${pin}*5*1*5*7*1*1*${
                         item <= 4
@@ -80,19 +80,20 @@ function Cbedstvadditionalpayment() {
                           : '5*4*3*4*' + (item - 9)
                       }#`,
                     );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*1*5*7*1*1*${
-                    //     item <= 4
-                    //       ? item
-                    //       : item <= 6
-                    //       ? '5*' + (item - 4) + '#'
-                    //       : item == 7
-                    //       ? '5*4*1#'
-                    //       : item <= 9
-                    //       ? '5*4*3' + (item - 7)
-                    //       : '5*4*3*4*' + (item - 9)
-                    //   }#`,
-                    // );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*1*5*7*1*1*${
+                        item <= 4
+                          ? item
+                          : item <= 6
+                          ? '5*' + (item - 4) + '#'
+                          : item == 7
+                          ? '5*4*1#'
+                          : item <= 9
+                          ? '5*4*3' + (item - 7)
+                          : '5*4*3*4*' + (item - 9)
+                      }#`,
+                    );
                   }
                 } catch (e) {
                   throw e;
@@ -102,19 +103,35 @@ function Cbedstvadditionalpayment() {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*5*1*5*7*1*1*${
-                        item <= 4
-                          ? item
-                          : item <= 6
-                          ? '5*' + (item - 4) + '#'
-                          : item == 7
-                          ? '5*4*1#'
-                          : item <= 9
-                          ? '5*4*3' + (item - 7)
-                          : '5*4*3*4*' + (item - 9)
-                      }#`,
-                    );
+                    if (route.params.type == 1) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*5*1*5*7*1*1*${
+                          item <= 4
+                            ? item
+                            : item <= 6
+                            ? '5*' + (item - 4) + '#'
+                            : item == 7
+                            ? '5*4*1#'
+                            : item <= 9
+                            ? '5*4*3' + (item - 7)
+                            : '5*4*3*4*' + (item - 9)
+                        }#`,
+                      );
+                    } else {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*4*5*1*5*7*1*1*${
+                          item <= 4
+                            ? item
+                            : item <= 6
+                            ? '5*' + (item - 4) + '#'
+                            : item == 7
+                            ? '5*4*1#'
+                            : item <= 9
+                            ? '5*4*3' + (item - 7)
+                            : '5*4*3*4*' + (item - 9)
+                        }#`,
+                      );
+                    }
                   } else {
                     throw new Error();
                   }

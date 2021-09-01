@@ -18,10 +18,11 @@ import Cbetransfertoanotherbank from './transfer/Cbetransfertoanotherbank';
 import Cbedonation from './transfer/Cbedonation';
 let i = 0;
 const useState = React.useState;
-function CbetransferStack({navigation}) {
+function CbetransferStack({navigation, route}) {
   useFocusEffect(() => {
     i = 0;
   });
+
   const [isPressed1, setPressed1] = useState(false);
   const [isPressed2, setPressed2] = useState(false);
   const [isPressed3, setPressed3] = useState(false);
@@ -43,7 +44,9 @@ function CbetransferStack({navigation}) {
             onPress={() => {
               if (i == 0) {
                 i++;
-                navigation.navigate('Cbeaccounttransfer');
+                navigation.navigate('Cbeaccounttransfer', {
+                  // type: route.params.type,
+                });
               }
             }}>
             <Text style={styles.txt}>Transfer to Any CBE Account</Text>
@@ -58,7 +61,7 @@ function CbetransferStack({navigation}) {
             onPress={() => {
               if (i == 0) {
                 i++;
-                navigation.navigate('Cbebirrwallet');
+                navigation.navigate('Cbebirrwallet', {type: route.params.type});
               }
             }}
             onPressIn={() => setPressed2(true)}
@@ -80,6 +83,7 @@ function CbetransferStack({navigation}) {
                   screen: 'Cbeallinone',
                   params: {
                     id: 5,
+                    type: route.params.type,
                   },
                 });
               }
@@ -103,6 +107,7 @@ function CbetransferStack({navigation}) {
                   screen: 'Cbeallinone',
                   params: {
                     id: 4,
+                    type: route.params.type,
                   },
                 });
               }
@@ -126,6 +131,7 @@ function CbetransferStack({navigation}) {
                   screen: 'Cbeallinone',
                   params: {
                     id: 3,
+                    type: route.params.type,
                   },
                 });
               }
@@ -146,7 +152,9 @@ function CbetransferStack({navigation}) {
             onPress={() => {
               if (i == 0) {
                 i++;
-                navigation.navigate('Cbetransfertotelebirr');
+                navigation.navigate('Cbetransfertotelebirr', {
+                  type: route.params.type,
+                });
               }
             }}
             onPressIn={() => setPressed6(true)}
@@ -165,7 +173,9 @@ function CbetransferStack({navigation}) {
             onPress={() => {
               if (i == 0) {
                 i++;
-                navigation.navigate('Cbetransfertoanotherbank');
+                navigation.navigate('Cbetransfertoanotherbank', {
+                  type: route.params.type,
+                });
               }
             }}
             onPressIn={() => setPressed7(true)}
@@ -182,7 +192,7 @@ function CbetransferStack({navigation}) {
           <Pressable
             onPress={() => {
               if (i == 0) {
-                navigation.navigate('Cbedonation');
+                navigation.navigate('Cbedonation', {type: route.params.type});
               }
             }}
             onPressIn={() => setPressed8(true)}
@@ -203,7 +213,7 @@ function CbetransferStack({navigation}) {
 }
 
 const Stack = createStackNavigator();
-function Cbetransfer() {
+function Cbetransfer({navigation, route}) {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -212,10 +222,12 @@ function Cbetransfer() {
       }}>
       <Stack.Screen
         name="CbetransferStack"
+        initialParams={route}
         options={{title: 'Transfer'}}
         component={CbetransferStack}
       />
       <Stack.Screen
+        initialParams={route}
         name="Cbeaccounttransfer"
         options={{title: 'Account Transfer'}}
         component={Cbeaccounttransfer}
@@ -224,20 +236,24 @@ function Cbetransfer() {
         options={{title: 'CBEBirr Wallet'}}
         name="Cbebirrwallet"
         component={Cbebirrwallet}
+        initialParams={route}
       />
       <Stack.Screen
         options={{title: 'Transfer To TeleBirr'}}
         name="Cbetransfertotelebirr"
+        initialParams={route}
         component={Cbetransfertotelebirr}
       />
       <Stack.Screen
         options={{title: 'Transfer To Another Bank'}}
         name="Cbetransfertoanotherbank"
+        initialParams={route}
         component={Cbetransfertoanotherbank}
       />
 
       <Stack.Screen
         name="Cbedonation"
+        initialParams={route}
         options={{title: 'Donation'}}
         component={Cbedonation}
       />

@@ -18,7 +18,7 @@ let schema = yup.object().shape({
   amount: yup.number().required().positive().integer(),
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
-function Cbetransfertotelebirr() {
+function Cbetransfertotelebirr({route}) {
   const [pin, setPin] = useState();
   const [phone, setPhone] = useState();
   const [amount, setAmount] = useState();
@@ -45,13 +45,14 @@ function Cbetransfertotelebirr() {
             .then(bool => {
               if (bool) {
                 try {
-                  if (pin && phone && amount) {
+                  if (route.params.type == 1) {
                     RNImmediatePhoneCall.immediatePhoneCall(
                       `*889*1*${pin}*5*5*5*2*1*${phone}*${amount}#`,
                     );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*5*2*1*${phone}*${amount}#`,
-                    // );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*5*2*1*${phone}*${amount}#`,
+                    );
                   }
                 } catch (e) {
                   throw e;

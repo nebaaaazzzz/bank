@@ -10,7 +10,7 @@ let schema = yup.object().shape({
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
 const useState = React.useState;
-function Cbedonation() {
+function Cbedonation({route}) {
   const [pin, setPin] = useState();
   const [amount, setAmount] = useState();
 
@@ -36,12 +36,15 @@ function Cbedonation() {
             .then(bool => {
               if (bool) {
                 try {
-                  RNImmediatePhoneCall.immediatePhoneCall(
-                    `*889*1*${pin}*5*5*${item}*${account}#`,
-                  );
-                  // RNImmediatePhoneCall.immediatePhoneCall(
-                  //   `*889*1*${pin}*4*5*3*${item}*${account}#`,
-                  // );
+                  if (route.params.type == 1) {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*5*5*${item}*${account}#`,
+                    );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*3*${item}*${account}#`,
+                    );
+                  }
                 } catch (e) {
                   throw e;
                 }
@@ -50,9 +53,15 @@ function Cbedonation() {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*5*5*${item}*${account}#`,
-                    );
+                    if (route.params.type == 1) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*5*5*${item}*${account}#`,
+                      );
+                    } else {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*4*5*3*${item}*${account}#`,
+                      );
+                    }
                   } else {
                     Alert.alert('pls allow');
                   }

@@ -16,12 +16,13 @@ let schema = yup.object().shape({
   key: yup.number().required().positive().integer(),
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
-function Cbeaddiswaterbill() {
+function Cbeaddiswaterbill({route}) {
   const [pin, setPin] = useState();
   const [key, setKey] = useState();
   const [isErr1, setErr1] = useState(false);
   const [isErr2, setErr2] = useState(false);
   const onSubmit = () => {
+    console.log('addis abeba water');
     requestAnimationFrame(() => {
       schema
         .validate(
@@ -38,13 +39,14 @@ function Cbeaddiswaterbill() {
             .then(bool => {
               if (bool) {
                 try {
-                  if (key && pin) {
+                  if (route.params.type == 1) {
                     RNImmediatePhoneCall.immediatePhoneCall(
                       `*889*1*${pin}*5*1*4*${key}*1#`,
                     );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*1*4*${key}*1#`,
-                    // );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*1*4*${key}*1#`,
+                    );
                   }
                 } catch (e) {
                   throw e;
@@ -55,9 +57,13 @@ function Cbeaddiswaterbill() {
                 ).then(status => {
                   if (status === 'granted') {
                     try {
-                      if (key && pin) {
+                      if (route.params.type == 1) {
                         RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*1*4*${key}*1#`,
+                        );
+                      } else {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*4*${key}*1#`,
                         );
                       }
                     } catch (e) {

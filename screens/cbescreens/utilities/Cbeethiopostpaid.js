@@ -19,7 +19,7 @@ let schema = yup.object().shape({
 
 const useState = React.useState;
 
-function Cbeethiopiapostpaid() {
+function Cbeethiopiapostpaid({route}) {
   const [pin, setPin] = useState();
   const [phnacc, setPhnacc] = useState();
   const [isErr1, setErr1] = useState(false);
@@ -42,13 +42,14 @@ function Cbeethiopiapostpaid() {
             .then(bool => {
               if (bool) {
                 try {
-                  if (phnacc && pin && selected) {
+                  if (route.params.type == 1) {
                     RNImmediatePhoneCall.immediatePhoneCall(
                       `*889*1*${pin}*5*1*1*${checked}*${phoneacc}#`,
                     );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*1*1*${checked}*${phoneacc}#`,
-                    // );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*1*1*${checked}*${phoneacc}#`,
+                    );
                   }
                 } catch (e) {
                   throw e;
@@ -59,12 +60,15 @@ function Cbeethiopiapostpaid() {
                 ).then(status => {
                   if (status === 'granted') {
                     try {
-                      RNImmediatePhoneCall.immediatePhoneCall(
-                        `*889*1*${pin}*5*1*1*${selected}*${phoneacc}#`,
-                      );
-                      // RNImmediatePhoneCall.immediatePhoneCall(
-                      //   `*889*1*${pin}*4*5*1*1*${checked}*${phoneacc}#`,
-                      // );
+                      if (route.params.type == 1) {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*5*1*1*${checked}*${phoneacc}#`,
+                        );
+                      } else {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*1*${checked}*${phoneacc}#`,
+                        );
+                      }
                     } catch (e) {
                       throw e;
                     }

@@ -17,7 +17,7 @@ let schema = yup.object().shape({
   cardno: yup.number().required().positive().integer(),
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
-function Cbedstvpayment() {
+function Cbedstvpayment({route}) {
   const [pin, setPin] = useState();
   const [cardno, setCardno] = useState();
   const [isErr1, setErr1] = useState(false);
@@ -54,17 +54,18 @@ function Cbedstvpayment() {
             .then(bool => {
               if (bool) {
                 try {
-                  if (pin && item) {
+                  if (route.params.type == 1) {
                     RNImmediatePhoneCall.immediatePhoneCall(
                       `*889*1*${pin}*5*1*5*5*${
                         item >= 7 ? '7*' + (item - 6) : item
-                      }*${number}#`,
+                      }*${cardno}#`,
                     );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `*889*1*${pin}*4*5*1*5*5*${
-                    //     item >= 7 ? '7*' + (item - 6) : item
-                    //   }*${number}#`,
-                    // );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*1*5*5*${
+                        item >= 7 ? '7*' + (item - 6) : item
+                      }*${cardno}#`,
+                    );
                   }
                 } catch (e) {
                   throw e;
@@ -74,27 +75,27 @@ function Cbedstvpayment() {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*5*1*5*7*1*1*${
-                        item <= 4
-                          ? item
-                          : item <= 6
-                          ? '5*' + (item - 4) + '#'
-                          : item == 7
-                          ? '5*4*1#'
-                          : item <= 9
-                          ? '5*4*3' + (item - 7)
-                          : '5*4*3*4*' + (item - 9)
-                      }#`,
-                    );
+                    if (route.params.type == 1) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*5*1*5*5*${
+                          item >= 7 ? '7*' + (item - 6) : item
+                        }*${cardno}#`,
+                      );
+                    } else {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*4*5*1*5*5*${
+                          item >= 7 ? '7*' + (item - 6) : item
+                        }*${cardno}#`,
+                      );
+                    }
                   } else {
-                    Alert.alert('pls allow');
+                    throw new Error();
                   }
                 });
               }
             })
             .catch(err => {
-              console.log('error dfk');
+              throw err;
             });
         })
         .catch(err => {

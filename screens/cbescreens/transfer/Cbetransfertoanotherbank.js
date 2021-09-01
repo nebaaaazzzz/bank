@@ -18,7 +18,7 @@ let schema = yup.object().shape({
 });
 const useState = React.useState;
 
-function Cbetransfertoanotherbank({navigation}) {
+function Cbetransfertoanotherbank({navigation, route}) {
   const [pin, setPin] = useState();
   const [account, setAccount] = useState();
 
@@ -51,16 +51,19 @@ function Cbetransfertoanotherbank({navigation}) {
             .then(bool => {
               if (bool) {
                 try {
-                  RNImmediatePhoneCall.immediatePhoneCall(
-                    `*889*1*${pin}*5*5*5*3*1*${
-                      item == 7 ? '7*1' : item
-                    }*${account}#`,
-                  );
-                  // RNImmediatePhoneCall.immediatePhoneCall(
-                  //   `*889*1*${pin}*4*5*5*3*1*${
-                  //     item == 7 ? '7*1' : item
-                  //   }*${account}#`,
-                  // );
+                  if (route.params.type == 1) {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*5*5*5*3*1*${
+                        item == 7 ? '7*1' : item
+                      }*${account}#`,
+                    );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*5*3*1*${
+                        item == 7 ? '7*1' : item
+                      }*${account}#`,
+                    );
+                  }
                 } catch (e) {
                   throw e;
                 }
@@ -69,11 +72,19 @@ function Cbetransfertoanotherbank({navigation}) {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${pin}*5*5*5*3*1*${
-                        item == 7 ? '7*1' : item
-                      }*${account}#`,
-                    );
+                    if (route.params.type == 1) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*5*5*5*3*1*${
+                          item == 7 ? '7*1' : item
+                        }*${account}#`,
+                      );
+                    } else {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${pin}*4*5*5*3*1*${
+                          item == 7 ? '7*1' : item
+                        }*${account}#`,
+                      );
+                    }
                   } else {
                     throw new Error();
                   }

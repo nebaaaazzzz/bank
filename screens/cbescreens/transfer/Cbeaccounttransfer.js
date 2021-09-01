@@ -19,7 +19,7 @@ let schema = yup.object().shape({
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
 
-function Cbeaccounttransfer() {
+function Cbeaccounttransfer({route}) {
   const [pin, setPin] = useState();
   const [account, setAccount] = useState();
   const [amount, setAmount] = useState();
@@ -28,6 +28,7 @@ function Cbeaccounttransfer() {
   const [isErr2, setErr2] = useState(false);
   const [isErr3, setErr3] = useState(false);
   const onSubmit = () => {
+    console.log(route);
     requestAnimationFrame(() => {
       schema
         .validate(

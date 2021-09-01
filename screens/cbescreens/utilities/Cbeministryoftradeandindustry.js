@@ -17,7 +17,7 @@ let schema = yup.object().shape({
   ref: yup.number().required().positive().integer(),
   pin: yup.number().required().positive().integer().min(1000).max(9999),
 });
-function Cbeministryoftradeandindustry() {
+function Cbeministryoftradeandindustry({route}) {
   const [pin, setPin] = useState();
   const [ref, setRef] = useState();
 
@@ -40,12 +40,15 @@ function Cbeministryoftradeandindustry() {
             .then(bool => {
               if (bool) {
                 try {
-                  RNImmediatePhoneCall.immediatePhoneCall(
-                    `*889*1*${pin}*5*1*5*3${ref}#`,
-                  );
-                  // RNImmediatePhoneCall.immediatePhoneCall(
-                  //   `*889*1*${pin}*4*5*1*5*3${ref}#`,
-                  // );
+                  if (route.params.type == 1) {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*5*1*5*3${ref}#`,
+                    );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*4*5*1*5*3${ref}#`,
+                    );
+                  }
                 } catch (e) {
                   throw e;
                 }
@@ -55,9 +58,15 @@ function Cbeministryoftradeandindustry() {
                 ).then(status => {
                   if (status === 'granted') {
                     try {
-                      RNImmediatePhoneCall.immediatePhoneCall(
-                        `*889*1*${pin}*5*1*5*3${ref}#`,
-                      );
+                      if (route.params.type == 1) {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*5*1*5*3${ref}#`,
+                        );
+                      } else {
+                        RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*5*3${ref}#`,
+                        );
+                      }
                     } catch (e) {
                       throw e;
                     }

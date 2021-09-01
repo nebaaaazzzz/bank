@@ -19,7 +19,7 @@ let schema = yup.object().shape({
   confPin: yup.number().required().positive().integer().min(1000).max(9999),
 });
 
-function Cbechangepin() {
+function Cbechangepin({route}) {
   const [oldPin, setoldPin] = useState();
   const [newPin, setNewpin] = useState();
   const [confPin, setConfPin] = useState();
@@ -45,9 +45,12 @@ function Cbechangepin() {
             .then(bool => {
               if (bool) {
                 try {
-                  RNImmediatePhoneCall.immediatePhoneCall(
-                    `*889*1*${oldPin}*5*5*5*4*2${oldPin}*${newPin}*${confPin}#`,
-                  );
+                  if ((route.params, type == 1)) {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${oldPin}*5*5*5*4*2${oldPin}*${newPin}*${confPin}#`,
+                    );
+                  } else {
+                  }
                 } catch (e) {
                   throw e;
                 }
@@ -56,9 +59,12 @@ function Cbechangepin() {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `*889*1*${oldPin}*5*5*5*4*2${oldPin}*${newPin}*${confPin}#`,
-                    );
+                    if ((route.params, type == 1)) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `*889*1*${oldPin}*5*5*5*4*2${oldPin}*${newPin}*${confPin}#`,
+                      );
+                    } else {
+                    }
                   } else {
                     throw new Error('not Granted');
                   }

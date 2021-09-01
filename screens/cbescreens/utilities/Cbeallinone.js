@@ -17,8 +17,10 @@ let schema = yup.object().shape({
 });
 function Cbeallinone({navigation, route}) {
   const {params} = route;
+
   const [pin, setPin] = useState();
   const [isErr1, setErr1] = useState(false);
+
   params.id == 1
     ? navigation.setOptions({
         title: 'Flomart',
@@ -75,85 +77,98 @@ function Cbeallinone({navigation, route}) {
             .then(bool => {
               if (bool) {
                 try {
-                  if (pin) {
+                  if (params.type == 1) {
                     params.id == 1
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*1*5*4#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*5*1*5*4#`,
-                      //   )
-                      params.id == 2
+                      : params.id == 2
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*1*3#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*5*1*3#`,
-                      //   )
-                      params.id == 3
+                      : params.id == 3
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*5*1*1#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*2*1#`,
-                      //   )
-                      params.id == 4
+                      : params.id == 4
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*3#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*5*5*1#`,
-                      //   )
-                      params.id == 5
+                      : params.id == 5
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*2#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*3#`,
-                      //   )
-                      params.id == 6
+                      : params.id == 6
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*5*3*1#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*3*1#`,
-                      //   )
-                      params.id == 7
+                      : params.id == 7
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*5*3*2#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*3*2#`,
-                      //   )
-                      params.id == 8
+                      : params.id == 8
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*5**3*3#`,
                         )
-                      : // RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*3*3#`,
-                      //   )
-                      params.id == 9
+                      : params.id == 9
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*1*5*2#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*4*5*1*5*2#`,
-                      //   )
-                      params.id == 10
+                      : params.id == 10
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*5*5*4*1#`,
                         )
-                      : //  RNImmediatePhoneCall.immediatePhoneCall(
-                      //     `*889*1*${pin}*5*5*5*4*1#`,
-                      //   )
-                      params.id == 11
+                      : params.id == 11
                       ? RNImmediatePhoneCall.immediatePhoneCall(
                           `*889*1*${pin}*5*5*5*5*3#`,
                         )
-                      : // ? RNImmediatePhoneCall.immediatePhoneCall(
-                        //     `*889*1*${pin}*4*5*5*5*3#`,
-                        //   )
-                        '';
+                      : '';
+                  } else {
+                    params.id == 1
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*5*4#`,
+                        )
+                      : params.id == 2
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*3#`,
+                        )
+                      : params.id == 3
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*2*1#`,
+                        )
+                      : params.id == 4
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*5*1#`,
+                        )
+                      : params.id == 5
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*3#`,
+                        )
+                      : params.id == 6
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*3*1#`,
+                        )
+                      : params.id == 7
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*3*2#`,
+                        )
+                      : params.id == 8
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*3*3#`,
+                        )
+                      : params.id == 9
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*1*5*2#`,
+                        )
+                      : params.id == 10
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*5*5*5*4*1#`,
+                        )
+                      : params.id == 11
+                      ? RNImmediatePhoneCall.immediatePhoneCall(
+                          `*889*1*${pin}*4*5*5*5*3#`,
+                        )
+                      : '';
                   }
                 } catch (e) {
                   throw e;
@@ -164,9 +179,99 @@ function Cbeallinone({navigation, route}) {
                 ).then(status => {
                   if (status === 'granted') {
                     try {
-                      RNImmediatePhoneCall.immediatePhoneCall(
-                        `*889*1*${pin}*5*1*3#`,
-                      );
+                      if (params.type == 1) {
+                        params.id == 1
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*1*5*4#`,
+                            )
+                          : params.id == 2
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*1*3#`,
+                            )
+                          : params.id == 3
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*5*1*1#`,
+                            )
+                          : params.id == 4
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*3#`,
+                            )
+                          : params.id == 5
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*2#`,
+                            )
+                          : params.id == 6
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*5*3*1#`,
+                            )
+                          : params.id == 7
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*5*3*2#`,
+                            )
+                          : params.id == 8
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*5**3*3#`,
+                            )
+                          : params.id == 9
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*1*5*2#`,
+                            )
+                          : params.id == 10
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*5*5*4*1#`,
+                            )
+                          : params.id == 11
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*5*5*5*3#`,
+                            )
+                          : '';
+                      } else {
+                        params.id == 1
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*5*1*5*4#`,
+                            )
+                          : params.id == 2
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*5*1*3#`,
+                            )
+                          : params.id == 3
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*2*1#`,
+                            )
+                          : params.id == 4
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*5*5*1#`,
+                            )
+                          : params.id == 5
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*3#`,
+                            )
+                          : params.id == 6
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*3*1#`,
+                            )
+                          : params.id == 7
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*3*2#`,
+                            )
+                          : params.id == 8
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*3*3#`,
+                            )
+                          : params.id == 9
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*5*1*5*2#`,
+                            )
+                          : params.id == 10
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*5*5*5*4*1#`,
+                            )
+                          : params.id == 11
+                          ? RNImmediatePhoneCall.immediatePhoneCall(
+                              `*889*1*${pin}*4*5*5*5*3#`,
+                            )
+                          : '';
+                      }
                     } catch (e) {
                       throw e;
                     }

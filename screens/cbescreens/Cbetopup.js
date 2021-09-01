@@ -18,7 +18,8 @@ let schema = yup.object().shape({
 });
 
 const useState = React.useState;
-function Cbetopup(props) {
+function Cbetopup({route}) {
+  console.log(route.params.type);
   const [pin, setPin] = useState();
   const [phone, setPhone] = useState();
   const [amount, setAmount] = useState();
@@ -45,9 +46,15 @@ function Cbetopup(props) {
             .then(bool => {
               if (bool) {
                 try {
-                  RNImmediatePhoneCall.immediatePhoneCall(
-                    `*889*1*${pin}*3*1*${phone}*${amount}#`,
-                  );
+                  if (route.params.type == 1) {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `*889*1*${pin}*3*1*${phone}*${amount}#`,
+                    );
+                  } else {
+                    RNImmediatePhoneCall.immediatePhoneCall(
+                      `889*1*${pin}*4*5*2*1*${phone}*${amount}#`,
+                    );
+                  }
                 } catch (e) {
                   throw e;
                 }
@@ -56,12 +63,15 @@ function Cbetopup(props) {
                   'android.permission.CALL_PHONE',
                 ).then(status => {
                   if (status === 'granted') {
-                    RNImmediatePhoneCall.immediatePhoneCall(
-                      `889*1*${pin}*3*1*${phone}*${amount}#`,
-                    );
-                    // RNImmediatePhoneCall.immediatePhoneCall(
-                    //   `889*1*${pin}*4*5*2*1*${phone}*${amount}#`,
-                    // );
+                    if (route.params.type == 1) {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `889*1*${pin}*3*1*${phone}*${amount}#`,
+                      );
+                    } else {
+                      RNImmediatePhoneCall.immediatePhoneCall(
+                        `889*1*${pin}*4*5*2*1*${phone}*${amount}#`,
+                      );
+                    }
                   } else {
                     throw new Error();
                   }

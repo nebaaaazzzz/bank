@@ -12,7 +12,7 @@ import CbechangePin from './profile/Cbechangepin';
 import Entypo from 'react-native-vector-icons/Entypo';
 const useState = React.useState;
 
-function Cbeprofile({navigation}) {
+function Cbeprofile({navigation, route}) {
   const [isPressed1, setPressed1] = useState(false);
   const [isPressed2, setPressed2] = useState(false);
   const [isPressed3, setPressed3] = useState(false);
@@ -30,6 +30,7 @@ function Cbeprofile({navigation}) {
                 screen: 'Cbeallinone',
                 params: {
                   id: 10,
+                  type: route.params.type,
                 },
               })
             }
@@ -46,7 +47,9 @@ function Cbeprofile({navigation}) {
           <Pressable
             onPressIn={() => setPressed2(true)}
             onPressOut={() => setPressed2(false)}
-            onPress={() => navigation.navigate('CbechangePin')}
+            onPress={() =>
+              navigation.navigate('CbechangePin', {type: route.params.type})
+            }
             style={isPressed2 ? pressStyle.btn : styles.btn}>
             <Text style={styles.txt}>Change PIN</Text>
             <Entypo
@@ -62,6 +65,7 @@ function Cbeprofile({navigation}) {
                 screen: 'Cbeallinone',
                 params: {
                   id: 11,
+                  type: route.params.type,
                 },
               })
             }
@@ -81,9 +85,8 @@ function Cbeprofile({navigation}) {
     </SafeAreaView>
   );
 }
-function CbeprofileStack() {
-  const Stack = createStackNavigator();
-
+const Stack = createStackNavigator();
+function CbeprofileStack({route}) {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -92,17 +95,20 @@ function CbeprofileStack() {
       }}>
       <Stack.Screen
         name="Cbeprofile"
+        initialParams={{type: route.params.type}}
         options={{title: 'Profile'}}
         component={Cbeprofile}
       />
       <Stack.Screen
         name="CbechangePin"
+        initialParams={{type: route.params.type}}
         options={{headerTintColor: '#fff', title: 'Change PIN'}}
         component={CbechangePin}
       />
     </Stack.Navigator>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

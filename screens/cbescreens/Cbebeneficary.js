@@ -11,7 +11,7 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo';
 const useState = React.useState;
 
-function Cbebeneficary({navigation}) {
+function Cbebeneficary({navigation, route}) {
   const [isPressed1, setPressed1] = useState(false);
   const [isPressed2, setPressed2] = useState(false);
   const [isPressed3, setPressed3] = useState(false);
@@ -29,6 +29,7 @@ function Cbebeneficary({navigation}) {
                 screen: 'Cbeallinone',
                 params: {
                   id: 6,
+                  type: route.params.type,
                 },
               })
             }
@@ -50,6 +51,7 @@ function Cbebeneficary({navigation}) {
                 screen: 'Cbeallinone',
                 params: {
                   id: 7,
+                  type: route.params.type,
                 },
               })
             }
@@ -68,6 +70,7 @@ function Cbebeneficary({navigation}) {
                 screen: 'Cbeallinone',
                 params: {
                   id: 8,
+                  type: route.params.type,
                 },
               })
             }

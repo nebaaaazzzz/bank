@@ -16,7 +16,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 const utilStack = createStackNavigator();
 
 let i;
-function utilitystack({navigation}) {
+function utilitystack({navigation, route}) {
   useFocusEffect(() => {
     i = 0;
   });
@@ -59,7 +59,9 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbeethiopostpaid');
+                  navigation.navigate('Cbeethiopostpaid', {
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -76,7 +78,9 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbeelectricutility');
+                  navigation.navigate('Cbeelectricutility', {
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -93,7 +97,10 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbeallinone', {id: 2});
+                  navigation.navigate('Cbeallinone', {
+                    id: 2,
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -127,7 +134,9 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbeguzogopayment');
+                  navigation.navigate('Cbeguzogopayment', {
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -146,6 +155,7 @@ function utilitystack({navigation}) {
                   i++;
                   navigation.navigate('Cbeallinone', {
                     id: 9,
+                    type: route.params.type,
                   });
                 }
               });
@@ -163,7 +173,9 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbeministryoftradeandindustry');
+                  navigation.navigate('Cbeministryoftradeandindustry', {
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -182,6 +194,7 @@ function utilitystack({navigation}) {
                   i++;
                   navigation.navigate('Cbeallinone', {
                     id: 1,
+                    type: route.params.type,
                   });
                 }
               });
@@ -199,7 +212,9 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbedstvpayment');
+                  navigation.navigate('Cbedstvpayment', {
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -216,7 +231,9 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbedstvadditionalpayment');
+                  navigation.navigate('Cbedstvadditionalpayment', {
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -233,7 +250,9 @@ function utilitystack({navigation}) {
               requestAnimationFrame(() => {
                 if (i == 0) {
                   i++;
-                  navigation.navigate('Cbewebirr');
+                  navigation.navigate('Cbewebirr', {
+                    type: route.params.type,
+                  });
                 }
               });
             }}>
@@ -245,7 +264,7 @@ function utilitystack({navigation}) {
   );
 }
 
-function Cbeutility() {
+function Cbeutility({route}) {
   return (
     <utilStack.Navigator
       screenOptions={{
@@ -256,20 +275,28 @@ function Cbeutility() {
       <utilStack.Screen
         options={{title: 'Utility'}}
         name="Cbeutilitystack"
+        initialParams={{type: route.params.type}}
         component={utilitystack}
       />
       <utilStack.Screen
         options={{title: 'A.A Water Bill Payment'}}
         name="Cbeaddiswaterbill"
+        initialParams={{type: route.params.type}}
         component={Cbeaddiswaterbill}
       />
-      <utilStack.Screen name="Cbeallinone" component={Cbeallinone} />
+      <utilStack.Screen
+        name="Cbeallinone"
+        initialParams={{type: route.params.type}}
+        component={Cbeallinone}
+      />
       <utilStack.Screen
         options={{title: 'DsTv Additional Payment'}}
         name="Cbedstvadditionalpayment"
+        initialParams={{type: route.params.type}}
         component={Cbedstvadditionalpayment}
       />
       <utilStack.Screen
+        initialParams={{type: route.params.type}}
         options={{title: 'Ethiopian Electric Utility'}}
         name="Cbeelectricutility"
         component={Cbeelectricutility}
@@ -277,24 +304,29 @@ function Cbeutility() {
       <utilStack.Screen
         options={{title: 'EthioTelecom Post Paid'}}
         name="Cbeethiopostpaid"
+        initialParams={{type: route.params.type}}
         component={Cbeethiopostpaid}
       />
       <utilStack.Screen
+        initialParams={{type: route.params.type}}
         options={{title: 'GuzoGO payment'}}
         name="Cbeguzogopayment"
         component={Cbeguzogopayment}
       />
       <utilStack.Screen
+        initialParams={{type: route.params.type}}
         options={{title: 'Minister of Trade And Industry'}}
         name="Cbeministryoftradeandindustry"
         component={Cbeministryoftradeandindustry}
       />
       <utilStack.Screen
+        initialParams={{type: route.params.type}}
         options={{title: 'Webirr'}}
         name="Cbewebirr"
         component={Cbewebirr}
       />
       <utilStack.Screen
+        initialParams={{type: route.params.type}}
         options={{title: 'DsTv Payment'}}
         name="Cbedstvpayment"
         component={Cbedstvpayment}
