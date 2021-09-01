@@ -52,7 +52,7 @@ function Cbetopup({route}) {
                     );
                   } else {
                     RNImmediatePhoneCall.immediatePhoneCall(
-                      `889*1*${pin}*4*5*2*1*${phone}*${amount}#`,
+                      `*889*1*${pin}*4*5*2*1*${phone}*${amount}#`,
                     );
                   }
                 } catch (e) {
@@ -65,11 +65,11 @@ function Cbetopup({route}) {
                   if (status === 'granted') {
                     if (route.params.type == 1) {
                       RNImmediatePhoneCall.immediatePhoneCall(
-                        `889*1*${pin}*3*1*${phone}*${amount}#`,
+                        `*889*1*${pin}*3*1*${phone}*${amount}#`,
                       );
                     } else {
                       RNImmediatePhoneCall.immediatePhoneCall(
-                        `889*1*${pin}*4*5*2*1*${phone}*${amount}#`,
+                        `*889*1*${pin}*4*5*2*1*${phone}*${amount}#`,
                       );
                     }
                   } else {

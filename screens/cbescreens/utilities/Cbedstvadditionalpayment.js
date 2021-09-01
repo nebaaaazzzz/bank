@@ -49,7 +49,7 @@ function Cbedstvadditionalpayment({route}) {
     'HDPVR',
   ];
   const [item, setItem] = useState();
-  const onSubmit = ({number, pin}) => {
+  const onSubmit = () => {
     requestAnimationFrame(() => {
       schema
         .validate(
