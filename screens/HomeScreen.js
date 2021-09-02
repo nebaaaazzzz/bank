@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import CbeStack from './cbescreens/Cbe';
+import WegStack from './wegscreens/Weg';
 import Header from './Header';
 const useState = React.useState;
 
@@ -261,6 +262,7 @@ function List({navigation}) {
           <View style={isPressed10 ? pressStyle.btnweg : styles.btnweg}>
             <Pressable
               onPressIn={() => setPressed10(true)}
+              onPress={() => navigation.navigate('WegStack')}
               onPressOut={() => setPressed10(false)}>
               <Image
                 style={isPressed10 ? pressStyle.imgabs : styles.imgabs}
@@ -292,6 +294,11 @@ function HomeScreen(props) {
         name="CbeStack"
         options={{headerShown: false}}
         component={CbeStack}
+      />
+      <Stack.Screen
+        name="WegStack"
+        options={{headerShown: false}}
+        component={WegStack}
       />
     </Stack.Navigator>
   );
